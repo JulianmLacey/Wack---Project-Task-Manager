@@ -35,6 +35,13 @@ User.init(
 				len: [8],
 			},
 		},
+		tasks: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: "tasks",
+				key: "id",
+			},
+		},
 	},
 	{
 		hooks: {
