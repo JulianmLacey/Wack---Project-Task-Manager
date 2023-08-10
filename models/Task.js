@@ -25,7 +25,7 @@ Task.init(
 			defaultValue: DataTypes.NOW,
 		},
 		status: {
-			type: DataTypes.FLOAT,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 		priority: {
