@@ -5,19 +5,20 @@ class Task extends Model {}
 
 Task.init(
 	{
-		id: {
+		ID: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		name: {
+		taskName: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
 		description: {
 			type: DataTypes.STRING,
 		},
+
 		date_created: {
 			type: DataTypes.DATE,
 			allowNull: false,
@@ -33,6 +34,21 @@ Task.init(
 		},
 		timeline: {
 			type: DataTypes.FLOAT,
+		},
+
+		USERID: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: "user",
+				key: "id",
+			},
+		},
+		PROJECTID: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: "project",
+				key: "id",
+			},
 		},
 	},
 	{

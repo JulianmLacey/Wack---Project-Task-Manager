@@ -27,12 +27,10 @@ Comment.init(
 			},
 		},
 		projects_id: {
-			user_id: {
-				type: DataTypes.INTEGER,
-				references: {
-					model: "projects",
-					key: "id",
-				},
+			type: DataTypes.INTEGER,
+			references: {
+				model: "projects",
+				key: "id",
 			},
 		},
 	},
