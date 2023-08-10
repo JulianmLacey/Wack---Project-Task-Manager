@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Comment extends Model {}
+class Project extends Model {}
 
-Comment.init(
+Project.init(
 	{
 		id: {
 			type: DataTypes.INTEGER,
@@ -11,28 +11,18 @@ Comment.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		content: {
+		name: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		missions_statement: {
 			type: DataTypes.STRING,
 		},
-		date_created: {
-			type: DataTypes.DATE,
-			allowNull: false,
-			defaultValue: DataTypes.NOW,
-		},
-		user_id: {
+		ManagerID: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: "user",
 				key: "id",
-			},
-		},
-		projects_id: {
-			user_id: {
-				type: DataTypes.INTEGER,
-				references: {
-					model: "projects",
-					key: "id",
-				},
 			},
 		},
 	},
@@ -45,4 +35,4 @@ Comment.init(
 	}
 );
 
-module.exports = Comment;
+module.exports = Project;
