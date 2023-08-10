@@ -10,4 +10,12 @@ Task.belongsTo(User, {
 	foreignKey: "tasks",
 });
 
-module.exports = { User, Task };
+Task.hasManu(Comment, {
+	foreignKey: "project_id",
+});
+
+Comment.belongsTo(Task, {
+	foreignKey: "comment_id",
+});
+
+module.exports = { User, Task, Comment };
