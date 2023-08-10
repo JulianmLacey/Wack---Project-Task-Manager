@@ -1,75 +1,30 @@
-/*
+const express = require("express");
+const session = require("express-session");
+const routes = require("./controllers");
 
-BrainStorming
+const sequelize = require("./config/connection");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-Slack - wack
+const app = express();
+const PORT = process.env.PORT || 3001;
 
+const sess = {
+	secret: "Super secret secret",
+	cookie: {},
+	resave: false,
+	saveUninitialized: true,
+	store: new SequelizeStore({
+		db: sequelize,
+	}),
+};
 
-Chanel model
-    - users list
-    - ALL
+app.use(session(sess));
 
-    DM
-    - user a, user b
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+app.use(routes);
 
-- Organization
-    - Channels
-        - message threads
-        - all users
-
-    - direct messages
-       - 2 users
-
-
-
-    - Users
-CHANNEL
-    -forum
-
-
-
-Slack/project Tracker - wack
-
-Organization
-    - Channels
-        - isPublic
-            - YES; ALL USERS
-            - NO; ONLY TASK USERS
-                - TASK ASSIGNED TO
-            - NO; ONLY INVITED USERS
-        
-        - message stuff
-            content, date, created by, etc
-
-    - Users
-        - ID
-        - TASK LIST
-        - EMAIL
-        - PASSWORD
-
-        - PROFILE 
-            - NAME
-            - PROFILE PIC?
-            - BIO
-            
-
-    - task board
-        - TASK LIST
-            - TASK
-                - NAME
-                - TASK ID
-                - TIMELINE (Time Left)
-                - STATUS
-                - PRIORITY
-                - ASSIGNED TO (USERIDs)
-                
-
-
-Faker npm package
-
-
-
-
-
-*/
+sequelize.sync({ force: false }).then(() => {
+	app.listen(PORT, () => console.log("Now listening"));
+});

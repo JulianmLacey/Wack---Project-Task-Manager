@@ -1,0 +1,39 @@
+{
+    "root": true,
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "node": true,
+      "es6": true,
+      "es2017": true,
+      "es2018": true
+    },
+    "rules": {
+      "no-undef-init": "warn",
+      "no-duplicate-case": "error",
+      "no-empty": "warn",
+      "no-extra-semi": "error",
+      "no-func-assign": "error",
+      "no-irregular-whitespace": "error",
+      "no-unreachable": "warn",
+      "curly": "error",
+      "dot-notation": "off",
+      "eqeqeq": "error",
+      "no-empty-function": "warn",
+      "no-multi-spaces": "warn",
+      "no-mixed-spaces-and-tabs": "warn",
+      "no-trailing-spaces": "warn",
+      "default-case": "error",
+      "no-fallthrough": "error",
+      "no-unused-vars": "error",
+      "no-use-before-define": "error",
+      "no-redeclare": "error",
+      "brace-style": "error",
+      "indent": ["error", 2],
+      "quotes": ["error", "backtick"],
+      "semi": ["error", "always"],
+      "radix": "off"
+    },
+    "extends": ["prettier"]
+  }
+  

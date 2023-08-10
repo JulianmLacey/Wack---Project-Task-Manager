@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS wack_db;
+CREATE DATABASE wack_db;
