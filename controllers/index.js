@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const { Project, Comment, Task, User } = require("../models");
 //const apiRoutes = require("./api");
+const loginRoutes = require("./loginRoutes");
 
+router.use("/", loginRoutes);
 //router.use("/api", apiRoutes);
 
 //GET USERS
@@ -16,14 +18,5 @@ const { Project, Comment, Task, User } = require("../models");
 // });
 
 //GET PROJECTS
-router.get("/", async (req, res) => {
-	try {
-		const ProjectData = await Project.findAll();
-
-		res.status(200).json(ProjectData);
-	} catch (err) {
-		res.status(500).json(err);
-	}
-});
 
 module.exports = router;

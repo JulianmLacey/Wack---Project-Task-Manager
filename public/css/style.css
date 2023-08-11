@@ -1,0 +1,82 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #041ac2;
+	font-family: "Rubik", sans-serif;
+}
+
+.Uform {
+	padding-top: 60px;
+	background: #fff;
+	width: 500px;
+	margin: 80px auto;
+	display: flex;
+	flex-direction: column;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.Uform h1 {
+	font-weight: 300;
+}
+.Uform .content {
+	padding: 35px;
+	text-align: center;
+}
+.Uform .input-field {
+	padding: 12px 5px;
+}
+.Uform .input-field input {
+	font-size: 16px;
+	display: block;
+	font-family: "Rubik", sans-serif;
+	width: 100%;
+	padding: 10px 1px;
+	border: 0;
+	border-bottom: 1px solid #747474;
+	outline: none;
+}
+
+.Uform .input-field input:focus {
+	border-color: #222;
+}
+.Uform a.link {
+	text-decoration: none;
+	color: #747474;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+	display: inline-block;
+	margin-top: 20px;
+}
+.Uform .action {
+	padding: 40px 0px 0px 5px;
+	display: flex;
+	align-self: end;
+	flex-direction: row;
+}
+.Uform .action button {
+	width: 100%;
+	border: none;
+	padding: 18px;
+	font-family: "Rubik", sans-serif;
+	cursor: pointer;
+	text-transform: uppercase;
+	background: #e8e9ec;
+	color: #777;
+	letter-spacing: 0.2px;
+	outline: 0;
+}
+.Uform .action button:hover {
+	background: #d8d8d8;
+}
+.Uform .action button:nth-child(2) {
+	background: #2d3b55;
+	color: #fff;
+}
+.Uform .action button:nth-child(2):hover {
+	background: #3c4d6d;
+}

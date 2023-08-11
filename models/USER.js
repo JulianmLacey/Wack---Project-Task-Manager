@@ -38,6 +38,7 @@ User.init(
 		organization: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
+			unique: false,
 		},
 	},
 	{
