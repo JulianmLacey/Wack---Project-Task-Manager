@@ -37,4 +37,16 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    // update a Project by its `id` value
+    try {
+        const project = await Project.update(req.body, { where: { id: req.params.id } })
+        res.status(200).json(project);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+
 module.exports = router
