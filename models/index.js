@@ -3,23 +3,36 @@ const Task = require("./Task");
 const Comment = require("./comment");
 const Project = require("./Project");
 
-Project.hasOne(User, {
-	foreignKey: "ManagerID",
+User.hasOne(Project, {
+	foreignKey: "manager_id",
 });
 
-Comment.hasOne(User, {
+Project.belongsTo(User, {
+	foreignKey: "manager_id",
+});
+
+Project.hasMany(Task, {
+	foreignKey: "project_id",
+});
+
+Task.belongsTo(Project, {
+	foreignKey: "project_id",
+});
+
+Project.hasMany(Comment, {
 	foreignKey: "user_id",
 });
 
 Comment.belongsTo(Project, {
+	foreignKey: "user_id",
+});
+
+User.hasOne(Comment, {
 	foreignKey: "project_id",
 });
 
-Task.hasMany(User, {
-	foreignKey: "USERID",
-});
-Task.belongsTo(Project, {
-	foreignKey: "PROJECTID",
+Comment.belongsTo(User, {
+	foreignKey: "project_id",
 });
 
-module.exports = { User, Task, Comment };
+module.exports = { User, Task, Comment, Project };

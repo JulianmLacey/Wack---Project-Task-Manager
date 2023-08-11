@@ -5,7 +5,7 @@ class Task extends Model {}
 
 Task.init(
 	{
-		ID: {
+		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
@@ -35,7 +35,7 @@ Task.init(
 		timeline: {
 			type: DataTypes.FLOAT,
 		},
-
+		/*
 		USERID: {
 			type: DataTypes.INTEGER,
 			references: {
@@ -43,7 +43,8 @@ Task.init(
 				key: "id",
 			},
 		},
-		PROJECTID: {
+		*/
+		project_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: "project",
@@ -56,7 +57,7 @@ Task.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "project",
+		modelName: "task",
 	}
 );
 
