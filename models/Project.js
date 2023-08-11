@@ -17,9 +17,12 @@ Project.init(
 		},
 		missions_statement: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
-		ManagerID: {
+
+		manager_id: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			references: {
 				model: "user",
 				key: "id",

@@ -19,17 +19,20 @@ Comment.init(
 			allowNull: false,
 			defaultValue: DataTypes.NOW,
 		},
+
 		user_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: "user",
 				key: "id",
+				unique: false,
 			},
 		},
-		projects_id: {
+
+		project_id: {
 			type: DataTypes.INTEGER,
 			references: {
-				model: "projects",
+				model: "project",
 				key: "id",
 			},
 		},
@@ -39,7 +42,7 @@ Comment.init(
 		timestamps: false,
 		freezeTableName: true,
 		underscored: true,
-		modelName: "project",
+		modelName: "comment",
 	}
 );
 

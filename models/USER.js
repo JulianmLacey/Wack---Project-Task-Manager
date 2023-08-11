@@ -35,6 +35,10 @@ User.init(
 				len: [8],
 			},
 		},
+		organization: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+		},
 	},
 	{
 		hooks: {
