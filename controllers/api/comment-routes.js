@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Comment, User } = require('../../models');
+
 
 router.get('/', async (req, res) => {
     // find all categories
@@ -13,8 +14,10 @@ router.get('/', async (req, res) => {
                 },
             ],
         });
+        console.log(comments);
         res.status(200).json(comments);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 

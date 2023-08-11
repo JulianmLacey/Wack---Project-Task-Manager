@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const { Project, Comment, Task, User } = require("../models");
-//const apiRoutes = require("./api");
+const apiRoutes = require("./api");
 const loginRoutes = require("./loginRoutes");
 
 router.use("/", loginRoutes);
-//router.use("/api", apiRoutes);
+router.use("/api", apiRoutes);
 
 //GET USERS
 // router.get("/", async (req, res) => {
