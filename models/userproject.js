@@ -14,6 +14,7 @@ UserProject.init(
 		user_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			unique: false,
 			references: {
 				model: "user",
 				key: "id",
@@ -22,6 +23,7 @@ UserProject.init(
 		project_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			unique: false,
 			references: {
 				model: "project",
 				key: "id",

@@ -59,8 +59,18 @@ def seedComment():
             f.write('},\n')
         f.write('\n]')
 
+def seedUserTable():
+    with open('userProjectData.json', 'w') as f:
+        f.write('[ \n')
+        for _ in range(5):
+            f.write('{\n')
+            f.write('"user_id": ' + str(int(random.random()*9)+1) + ',\n' +
+                    '"project_id": ' + str(int(random.random()*3)+1) + '\n')
+            f.write('},\n')
+        f.write('\n]')
 
-seedUser()
+#seedUser()
 #seedProject()
 #seedTask()
 #seedComment()
+seedUserTable()

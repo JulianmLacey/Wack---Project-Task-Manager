@@ -36,25 +36,14 @@ Comment.belongsTo(User, {
 	foreignKey: "project_id",
 });
 
-UserProject.belongsTo(User, {
-	foreignKey: "user_id",
-});
-UserProject.belongsTo(Project, {
-	foreignKey: "project_id",
-});
-
-User.belongstoMany(Project, {
+User.belongsToMany(Project, {
 	as: "ProjectsForUser",
-	through: UserProject,
-	foreignKey: "user_id",
+	through: "UserProject",
 });
 
-Project.belongstoMany(User, {
+Project.belongsToMany(User, {
 	as: "UsersInProject",
-	through: UserProject,
-	foreignKey: "project_id",
+	through: "UserProject",
 });
 
-User.belongstoMany();
-
-module.exports = { User, Task, Comment, Project };
+module.exports = { User, Task, Comment, Project, UserProject };
