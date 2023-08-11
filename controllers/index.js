@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Project, Comment, Task, User } = require("../models");
 
 const apiRoutes = require("./api");
-const loginRoutes = require("./loginRoutes");
+const loginRoutes = require("./login-routes");
 
 
 router.use("/", loginRoutes);
