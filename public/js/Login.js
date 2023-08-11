@@ -18,6 +18,7 @@ const loginEventHandler = async (event) => {
 		if (response.ok) {
 			// If successful, redirect the browser to the profile page
 			document.location.replace('/projects');
+			console.log(response);
 			console.log("Login Successful");
 		} else {
 			alert(response.statusText);
