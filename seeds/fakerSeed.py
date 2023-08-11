@@ -24,8 +24,11 @@ def seedProject():
         f.write('[ \n')
         for _ in range(3):
             f.write('{\n')
-            f.write('"name": "' + faker.company() + '",\n' + '"missions_statement": "' +
-            " ".join(faker.words(5)) + '",\n' + '"manager_id": ' + str(int(random.random()*9)+1) + '\n')
+            f.write(
+            '"id": ' + str(int(random.random()*9)+1) + ',\n' +
+            '"name": "' + faker.company() + '",\n' + 
+            '"missions_statement": "' + " ".join(faker.words(5)) + '",\n' + 
+            '"manager_id": ' + str(int(random.random()*9)+1) + '\n')
             f.write('},\n')
         f.write('\n]')
 
@@ -70,7 +73,7 @@ def seedUserTable():
         f.write('\n]')
 
 #seedUser()
-#seedProject()
+seedProject()
 #seedTask()
 #seedComment()
-seedUserTable()
+#seedUserTable()

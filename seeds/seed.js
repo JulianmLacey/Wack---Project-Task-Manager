@@ -1,5 +1,6 @@
 const sequelize = require("../config/connection");
-const { User, Task, Comment, Project, UserProject } = require("../models");
+const queryInterface = sequelize.getQueryInterface();
+const { User, Task, Comment, Project } = require("../models");
 
 const userData = require("./userData.json");
 const projectData = require("./projectData.json");
@@ -20,7 +21,7 @@ const seedDatabase = async () => {
 
 	await Task.bulkCreate(taskData);
 
-	await UserProject.bulkCreate(userProjectData);
+	await queryInterface.bulkInsert("UserProject", userProjectData);
 
 	process.exit(0);
 };
