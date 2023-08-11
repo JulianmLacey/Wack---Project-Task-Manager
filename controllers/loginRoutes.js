@@ -8,6 +8,9 @@ router.get("/", async (req, res) => {
 router.get("/login", async (req, res) => {
 	res.render("login");
 });
+router.get("/signup", async (req, res) => {
+	res.render("signup");
+});
 
 router.post("/USERlogin", async (req, res) => {
 	console.log("LOGIN ATTEMPT");

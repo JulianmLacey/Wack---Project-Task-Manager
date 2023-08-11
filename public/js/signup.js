@@ -14,7 +14,7 @@ const signUpEventHandler = async (event) => {
 	console.log(Ipassword);
 	console.log(Iorganization);
 
-	if (email && password && name && organization) {
+	if (Iemail && Ipassword && Iname && Iorganization) {
 		// Send a POST request to the API endpoint
 		const response = await fetch("/USERsignup", {
 			method: "POST",
@@ -24,7 +24,7 @@ const signUpEventHandler = async (event) => {
 
 		if (response.ok) {
 			// If successful, redirect the browser to the profile page
-			//document.location.replace("/login");
+			document.location.replace("/login");
 			console.log(response);
 		} else {
 			alert(response.statusText);
