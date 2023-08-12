@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', async function (event) {
 	})
 
 	if (response.ok) {
-		window.location.href = '/'
+		window.location.href = '/projects'
 	} else {
 		const json = await response.json()
 		console.log(json)
