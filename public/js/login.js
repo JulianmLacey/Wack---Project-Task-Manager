@@ -1,36 +1,29 @@
-const loginUSER = document.getElementById("Login-submit");
-const getSignUpPage = document.getElementById("GetSignUpPage");
+const loginForm = document.querySelector('#login-form')
+const name = document.getElementById('username')
+const email = document.getElementById('email')
+const password = document.getElementById('password')
 
-const loginEventHandler = async (event) => {
-	event.preventDefault();
+loginForm.addEventListener('submit', async function (event) {
+	event.preventDefault()
 
-	const email = document.querySelector("#login-Username");
-	const password = document.querySelector("#login-Password");
-
-	if (email && password) {
-		// Send a POST request to the API endpoint
-		const response = await fetch("/login", {
-			method: "POST",
-			body: JSON.stringify({ email, password }),
-			headers: { "Content-Type": "application/json" },
-		});
-
-		if (response.ok) {
-			// If successful, redirect the browser to the profile page
-			document.location.replace('/projects');
-			console.log(response);
-			console.log("Login Successful");
-		} else {
-			alert(response.statusText);
-		}
+	const bodyObj = {
+		name: username.value,
+		email: email.value,
+		password: password.value
 	}
-};
 
-const getSignUpPageHandler = async (event) => {
-	event.preventDefault();
-	console.log("Get SignUp Page");
-	document.location.replace("/");
-};
+	const response = await fetch('/api/users/login', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(bodyObj)
+	})
 
-document.getElementById("Login-submit").addEventListener("click", getSignUpPageHandler);
-document.getElementById("GetSignUpPage").addEventListener("submit", loginEventHandler);
+	if (response.ok) {
+		window.location.href = '/'
+	} else {
+		const json = await response.json()
+		console.log(json)
+	}
+})
