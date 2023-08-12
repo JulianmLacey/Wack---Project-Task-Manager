@@ -1,21 +1,36 @@
 
-<div class="Uform">
-	<form>
-		<h1>Login</h1>
-		<div class="content">
-			<div class="input-field">
-				<input type="text" placeholder="EMAIL" autocomplete="nope" id="login-Username" />
-			</div>
-			<div class="input-field">
-				<input type="password" placeholder="PASSWORD" autocomplete="login-Password" />
-			</div>
-		</div>
-		<div class="action">
-			<button id="Login-submit">Login</button>
-		</div>
-    <a href="/signup">Sign up</a>
-	</form>
+<div class="row">
+  <div class="mx-auto col-10 col-md-8 col-lg-6">
+    <div>
+        <p>Log In</p>
+    </div>
+    <div>
+        <div>
+            <form id="login-form">
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                </div>
 
+				<div class="mb-3">
+                    <label for="username">Email</label>
+                    <input type="text" id="email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <input type="input" id="password">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark w-25" type="button">Log In</button>
+                </div>
+
+            </form>
+            <a href="/signup" class="link-dark">Sign Up</a>
+        </div>
+    </div>
+  </div>
 </div>
 <script src="./js/login.js"></script>
 
