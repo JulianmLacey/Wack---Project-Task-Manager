@@ -5,13 +5,13 @@ const { User } = require("../../models/");
 
 //POST SIGNUP - add user
 
-router.get('/', async (req,res) => {
-    try{
-        const users = await User.findAll();
-            res.status(200).json(users);
-        } catch (err) {
-            res.status(500).json(err);
-        }
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.post('/', async (req, res) => {
@@ -41,35 +41,40 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const { name, email, password } = req.body
+    if (name && email && password) {
+      const user = await User.findOne({
+        where: {
+          name: name,
+          email: email
+        }
+      })
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
+      if (!user) {
+        res.status(404).json("Error")
+        return
+      }
+
+      const isValidPw = user.checkPassword(password)
+
+      if (!isValidPw) {
+        res.status(404).json("Error")
+        return
+      }
+
+      req.session.save(() => {
+        req.session.user_id = user.id;
+        req.session.log_in = true;
+        res.status(200).json("Successful")
+      })
+
+    } else {
+      res.status(400).json({ message: "Error" })
     }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
-
-  } catch (err) {
-    res.status(400).json(err);
+  } catch (error) {
+    res.status(500).json({ message: "Error" })
   }
-});
+})
 //post logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
