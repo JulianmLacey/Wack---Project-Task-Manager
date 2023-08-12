@@ -23,18 +23,39 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     // create a new Project
     try {
-        const { name, mission_statement, manager_id } = req.body;
-        const user_id = req.session.user_id;
-        const newProject = Project.create({
-            name: name,
-            mission_statement: mission_statement,
-            user_id: user_id,
-            manager_id: manager_id
+        const { id, name, missions_statement, manager_id } = req.body;
+        const newProject = await Project.create({
+            id,
+            name,
+            missions_statement,
+            manager_id,
+
         });
         res.status(200).json(newProject);
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+router.put('/:id', async (req, res) => {
+    // update a Project by its `id` value
+    try {
+        const project = await Project.update(req.body, { where: { id: req.params.id } })
+        res.status(200).json(project);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    // delete a comment by its `id` value
+    try {
+        const project = await Project.destroy({ where: { id: req.params.id } })
+        res.status(200).json(project);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router
