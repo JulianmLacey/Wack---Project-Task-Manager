@@ -7,11 +7,12 @@ const { User } = require("../../models/");
 
 router.get('/', async (req,res) => {
     try{
-        const users = await User.findAll({
-            
-        })
-    }
-})
+        const users = await User.findAll();
+            res.status(200).json(users);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+});
 
 router.post('/', async (req, res) => {
   try {
