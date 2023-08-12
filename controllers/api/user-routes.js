@@ -5,6 +5,14 @@ const { User } = require("../../models/");
 
 //POST SIGNUP - add user
 
+router.get('/', async (req,res) => {
+    try{
+        const users = await User.findAll({
+            
+        })
+    }
+})
+
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
