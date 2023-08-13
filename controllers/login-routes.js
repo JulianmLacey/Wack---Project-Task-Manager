@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
   if (loggedIn) {
     res.render("home");
   } else {
-    res.render("test");
+    res.render("login");
   }
 });
 

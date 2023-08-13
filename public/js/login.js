@@ -1,7 +1,5 @@
-const loginForm = document.querySelector("#login-form");
-
-loginForm.addEventListener("submit", async (event) => {
-  const name = document.getElementById("username").value.trim();
+document.querySelector("#login-form").addEventListener("submit", async (event) => {
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
   event.preventDefault();
 
@@ -10,7 +8,7 @@ loginForm.addEventListener("submit", async (event) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, password }),
+    body: JSON.stringify({ email, password }),
   });
 
   if (response.ok) {

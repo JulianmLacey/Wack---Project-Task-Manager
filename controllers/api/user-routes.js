@@ -1,11 +1,15 @@
 const router = require("express").Router();
 const { User } = require("../../models/");
 
+/* /api/users
+POST / - ADD USER
+GET / - GET ALL USERS
 
 
-//POST SIGNUP - add user
 
-router.get('/', async (req, res) => {
+*/
+
+router.get("/", async (req, res) => {
   try {
     const users = await User.findAll();
     res.status(200).json(users);
@@ -14,73 +18,46 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+//POST / - ADD USER
+router.post("/", async (req, res) => {
   try {
-    console.log(req.body)
-    const { name, email, password } = req.body
-    if (name && email && password) {
-      const userData = await User.create({
-        name,
-        email,
-        password
-      })
-      req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.logged_in = true;
-        res.status(200).json("success");
-      });
-    } else {
-      res.status(400).json({ message: 'error' })
-    }
+    console.log(req.body);
+    const userData = await User.create(req.body);
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      res.status(200).json(userData);
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
 //post login - check user
-
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-    const { name, email, password } = req.body
-    if (name && email && password) {
-      const user = await User.findOne({
-        where: {
-          name: name,
-          email: email
-        }
-      })
+    const userData = await User.findOne({ where: { email: req.body.email } });
+    const validPass = await userData.checkPassword(req.body.password);
 
-      if (!user) {
-        res.status(404).json("Error")
-        return
-      }
-
-      const isValidPw = user.checkPassword(password)
-
-      if (!isValidPw) {
-        res.status(404).json("Error")
-        return
-      }
-
-      req.session.save(() => {
-        req.session.user_id = user.id;
-        req.session.log_in = true;
-        res.status(200).json("Successful")
-      })
-
-    } else {
-      res.status(400).json({ message: "Error" })
+    if (!userData || !validPass) {
+      res.status(200).json({ message: "Incorrect email or password" });
+      return;
     }
-  } catch (error) {
-    res.status(500).json({ message: "Error" })
-  }
-})
-//post logout
-router.post('/logout', (req, res) => {
-  // if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.log_in = true;
+      res.status(200).json(userData);
     });
+  } catch {
+    res.status(400).json(err);
+  }
+});
+//post logout
+router.post("/logout", (req, res) => {
+  // if (req.session.logged_in) {
+  req.session.destroy(() => {
+    res.status(204).end();
+  });
   // } else {
   //   res.status(404).end();
   // }
@@ -88,42 +65,28 @@ router.post('/logout', (req, res) => {
 
 //put update user
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    console.log(req.body)
-    const { username, password } = req.body
+    console.log(req.body);
+    const { username, password } = req.body;
     if (username && password) {
       const userData = await User.create({
         username,
-        password
-      })
+        password,
+      });
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.log_in = true;
-        res.status(200).json("Successful")
-      })
+        res.status(200).json("Successful");
+      });
     } else {
-      res.status(400).json({ message: "Error" })
+      res.status(400).json({ message: "Error" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error" })
+    res.status(500).json({ message: "Error" });
   }
-})
-
-
-
-
-
-
-
-
+});
 
 //delete user
-
-
-
-
-
-
 
 module.exports = router;
