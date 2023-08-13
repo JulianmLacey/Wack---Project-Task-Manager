@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
                 {
                     model: User,
                     attributes: ['name']
-                    
+
                 },
             ],
         });
@@ -24,9 +24,8 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     // create a new Project
     try {
-        const { id, name, missions_statement, manager_id } = req.body;
+        const { name, missions_statement, manager_id } = req.body;
         const newProject = await Project.create({
-            id,
             name,
             missions_statement,
             manager_id,
