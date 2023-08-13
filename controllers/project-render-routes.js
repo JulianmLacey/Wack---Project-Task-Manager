@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+// const { Project, User } = require('../models');
 
 
 //post projects
 
-router.get('/projects', async (req, res) => {
+router.get('/create', async (req, res) => {
     try {
         res.render('project-create');
     } catch (error) {
