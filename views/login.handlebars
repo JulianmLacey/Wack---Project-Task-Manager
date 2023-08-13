@@ -1,28 +1,40 @@
-<div class="row">
-  <div class="mx-auto col-10 col-md-8 col-lg-6">
-    <div>
-        <p>Log In</p>
-    </div>
-    <div>
-        <div>
-            <form id="login-form">
-				<div class="mb-3">
-                    <input type="email" placeholder="EMAIL" id="email">
-                </div>
 
-                <div class="mb-3">
-                    <input type="password" placeholder="PASSWORD" id="password">
-                </div>
-
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark w-25" type="button">Log In</button>
-                </div>
-
-            </form>
-            <a href="/signup" class="link-dark">Sign Up</a>
+<form class="o-container o-container--xsmall c-card u-absolute-center" id = "loginform">
+<header class="c-card__header">
+  <h2 class="c-heading">
+    Login
+  </h2>
+</header>
+  <div class="c-card__body">
+    <div class="o-form-element">
+      <label class="c-label">
+        Email:
+        <input class="c-field c-field--label" type="email" placeholder="your@email.com" id="email" />
+        <div role="tooltip" class="c-hint">
+          The email used to register the account
         </div>
+      </label>
+    </div>
+    <label class="o-form-element c-label">
+      Password:
+      <input class="c-field c-field--label" type="password" id="password"/>
+    </label>
+    <div class="o-form-element">
+      <label class="c-toggle c-toggle--success">
+        Remember me?
+        <input type="checkbox" checked />
+        <div class="c-toggle__track">
+          <div class="c-toggle__handle"></div>
+        </div>
+      </label>
     </div>
   </div>
-</div>
-<script src="./js/login.js"></script>
+  <footer class="c-card__footer">
+    <button type="submit" class="c-button c-button--brand c-button--block">
+      Login
+    </button>
+  </footer>
+</form>
 
+
+<script src="/js/login.js"></script>

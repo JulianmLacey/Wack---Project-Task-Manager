@@ -33,6 +33,18 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/projects", async (req, res) => {
+  try {
+    console.log(req.body);
+    const userData = await User.findAll(req.body, {
+      where: (user_id = req.body.user_id),
+      include: { Model: Project },
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 //post login - check user
 router.post("/login", async (req, res) => {
   try {
@@ -48,7 +60,7 @@ router.post("/login", async (req, res) => {
       req.session.log_in = true;
       res.status(200).json(userData);
     });
-  } catch {
+  } catch (err) {
     res.status(400).json(err);
   }
 });
