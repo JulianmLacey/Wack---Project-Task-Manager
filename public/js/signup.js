@@ -1,28 +1,20 @@
-const signUpForm = document.querySelector('#sign-up-form')
-const username = document.getElementById('username')
-const password = document.getElementById('password')
+document.querySelector("#sign-up-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = document.getElementById("email").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const password = document.getElementById("password").value.trim();
 
+  const response = await fetch("/api/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email, password }),
+  });
 
-signUpForm.addEventListener('submit', async function (event) {
-	event.preventDefault()
-
-	const bodyObj = {
-		name: username.value,
-		email: email.value,
-		password: password.value
-	}
-
-	const response = await fetch('/api/users', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(bodyObj)
-	})
-
-	if (response.ok) {
-		window.location.href = '/'
-	} else {
-		const json = await response.json()
-	}
-}) 
+  if (response.ok) {
+    window.location.replace("/login");
+  } else {
+    alert(response.statusText);
+  }
+});
