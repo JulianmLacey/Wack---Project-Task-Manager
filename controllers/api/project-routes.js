@@ -21,6 +21,22 @@ router.get('/', async (req, res) => {
 
 });
 
+router.get('/:id', async (req,res) => {
+    try{
+        const projects = await Project.findByPk(req.params.id,{
+            include: [
+                {
+                    model: User,
+                    attributes:['name'],
+                }
+            ]
+        });
+        res.status(200).json(projects);
+    } catch (err){
+        res.status(500).json(err);
+    }
+});
+
 router.post('/', async (req, res) => {
     // create a new Project
     try {
