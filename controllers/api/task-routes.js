@@ -44,6 +44,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { taskName, description, date_created, status, priority, timeline } = req.body;
+        const projectId = req.body.project_id;
         const newTask = await Task.create({
             taskName,
             description,
@@ -51,12 +52,7 @@ router.post('/', async (req, res) => {
             status,
             priority,
             timeline,
-            include: [
-                {
-                    model: Project,
-                    attributes: ['id']
-                }
-            ],
+            project_id: projectId
         });
         res.status(200).json(newTask);
     } catch (err) {

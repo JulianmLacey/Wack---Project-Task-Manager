@@ -15,7 +15,8 @@ taskForm.addEventListener('submit', async function(e) {
     priority: 2,
     timeline: 0.944868217283818,
     user_id: 12,
-    project_id: 3
+    project_id,
+    
  }
  const response = await fetch('/api/tasks', {
     method: 'POST',
