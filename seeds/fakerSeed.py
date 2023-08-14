@@ -14,7 +14,7 @@ def seedUser():
             f.write('"name": "' + faker.name() + '",\n' + 
             '"email": "' + faker.email() + '",\n' + 
             '"password": "' + faker.password() + '",\n' +
-            '"organization": ' +  (str(int(random.random()*5)+1) if (int(random.random()*3)) else 'null') + '\n')
+            '"project_s": ' +  (str(int(random.random()*5)+1) if (int(random.random()*3)) else 'null') + '\n')
             f.write('},\n')
         f.write('\n]')
 
@@ -72,8 +72,8 @@ def seedUserTable():
             f.write('},\n')
         f.write('\n]')
 
-#seedUser()
-seedProject()
+seedUser()
+#seedProject()
 #seedTask()
 #seedComment()
 #seedUserTable()

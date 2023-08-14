@@ -36,13 +36,13 @@ Comment.belongsTo(User, {
 });
 
 User.belongsToMany(Project, {
-	as: "ProjectsForUser",
 	through: "UserProject",
+	foreignKey: "user_id",
 });
 
 Project.belongsToMany(User, {
-	as: "UsersInProject",
 	through: "UserProject",
+	foreignKey: "project_id",
 });
 
 module.exports = { User, Task, Comment, Project };

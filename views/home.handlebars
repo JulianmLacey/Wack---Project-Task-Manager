@@ -1,16 +1,24 @@
-<div>
-    <h3>Active Projects</h3>
+<div role="menu" class="c-card c-card--menu">
+
+	{{#each projects as |project|}}
+		<button role="menuitem" class="c-card__control">{{project.title}}</button>
+
+	{{/each}}
+
+	<div role="separator" class="c-card__divider"></div>
+	<blaze-accordion>
+		<blaze-accordion-pane closed header="JOIN PROJECT">
+			<input class="c-field" placeholder="Project Key" type="text" id="addprojectinput" />
+			<button role="menuitem" class="c-card__control addbutton">ADD PROJECT</button>
+
+		</blaze-accordion-pane>
+		<blaze-accordion-pane header="ADD PROJECT">
+			<input class="c-field" placeholder="Project Title" type="text" id="addprojectinputtitle" />
+			<testarea class="c-field" placeholder="Project Description" type="text" id="addprojectinputdescription" />
+
+			<button role="menuitem" class="c-card__control joinbutton">JOIN PROJECT</button>
+
+		</blaze-accordion-pane>
+	</blaze-accordion>
 </div>
-
-<div class="projects-container">
-    {{#each projects}}
-    <div class="project">
-        <h3>{{name}}</h3>
-        <p>{{missions_statement}}</p>
-        <p>Manager: {{User.name}}</p>
-    </div>
-    {{/each}}
-</div>
-
-
-<script src="/js/logout.js"></script>
+<script src="/js/menu.js"></script>
