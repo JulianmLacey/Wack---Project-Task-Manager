@@ -27,11 +27,14 @@
         <h4>{{this.user.name}}</h4>
         <p>{{this.content}}</p>
         {{/each}}
+        {{#if loggedIn}}
         <form id="comment-form">
             <textarea id="content" placeholder="Add Comment"></textarea>
             <button id="comment-btn">Add Comment</button>
         </form>
-       
+        {{else}}
+         <h4>Must <span><a href="/login">log in</a></span> to comment</h4>
+         {{/if}}  
     </div>
 
 
