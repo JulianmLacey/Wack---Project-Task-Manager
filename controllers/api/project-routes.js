@@ -21,18 +21,18 @@ router.get('/', async (req, res) => {
 
 });
 
-router.get('/:id', async (req,res) => {
-    try{
-        const projects = await Project.findByPk(req.params.id,{
+router.get('/:id', async (req, res) => {
+    try {
+        const projects = await Project.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
-                    attributes:['name'],
+                    attributes: ['name'],
                 }
             ]
         });
         res.status(200).json(projects);
-    } catch (err){
+    } catch (err) {
         res.status(500).json(err);
     }
 });
@@ -40,11 +40,12 @@ router.get('/:id', async (req,res) => {
 router.post('/', async (req, res) => {
     // create a new Project
     try {
-        const { name, missions_statement, manager_id } = req.body;
+        const { name, missions_statement } = req.body;
+        const userId = req.session.user_id
         const newProject = await Project.create({
             name,
             missions_statement,
-            manager_id,
+            manager_id: userId
 
         });
         res.status(200).json(newProject);

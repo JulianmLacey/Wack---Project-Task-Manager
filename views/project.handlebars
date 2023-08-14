@@ -7,18 +7,21 @@
 
     <div>
         <h3>Tasks</h3>
-        <form id="task-form">
-            <textarea id="task-name" placeholder="Task Name"></textarea>
-            <textarea id="task-description" placeholder="Description"></textarea>
-            <button type="submit" id="task-btn">Submit</button>
-        </form>
-
-        <div>
+         <div>
             {{#each project.tasks}}
             <h4>{{this.taskName}}</h4>
             <p>Description : {{this.description}}</p>
             {{/each}}
         </div>
+        {{#if loggedIn}}
+        <form id="task-form">
+            <textarea id="task-name" placeholder="Task Name"></textarea>
+            <textarea id="task-description" placeholder="Description"></textarea>
+            <button type="submit" id="task-btn">Submit</button>
+        </form>
+        {{else}}
+        <h4>Must <span><a href="/login">log in</a></span> to add task</h4>
+        {{/if}}
 
     </div>
     <div>
@@ -27,10 +30,14 @@
         <h4>{{this.user.name}}</h4>
         <p>{{this.content}}</p>
         {{/each}}
+        {{#if loggedIn}}
         <form id="comment-form">
             <textarea id="content" placeholder="Add Comment"></textarea>
             <button id="comment-btn">Add Comment</button>
         </form>
+        {{else}}
+         <h4>Must <span><a href="/login">log in</a></span> to comment</h4>
+         {{/if}}  
     </div>
 
 

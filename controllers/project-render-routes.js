@@ -8,7 +8,13 @@ const router = require('express').Router();
 
 router.get('/create', async (req, res) => {
     try {
-        res.render('project-create');
+        const loggedIn = req.session.logged_in
+        console.log(req.session)
+        if (!loggedIn) {
+            res.redirect('/login')
+        } else {
+            res.render('project-create', { loggedIn: req.session.logged_in });
+        }
     } catch (error) {
         console.log(error);
         res.status(400);
