@@ -1,16 +1,20 @@
 <div>
-    <h3>Active Projects</h3>
-    <a href="/project/create">Create Project</a>
+    <h3 style="text-align: center">Active Projects</h3>
+    <a href="/project/create" style="align-items: center">Create Project</a>
 </div>
 
-<div class="projects-container">
+<div class="all-projects">
     {{#each projects}}
-    <a href="/home/{{id}}" class="project">
-        <h3>{{name}}</h3>
-        <p>{{missions_statement}}</p>
-        <p>Manager: {{this.username}}</p>
+    <a href="/home/{{id}}" style="text-decoration: none" >
+        <div class="projects-container" data-anijs="if: mouseover, do: bounceIn animated">
+                <h3>{{name}}</h3>
+                <p>{{missions_statement}}</p>
+                <p>Manager: {{this.username}}</p>
+        </div>
+    </a>
     {{/each}}
 </div>
 
 
 <script src="/js/logout.js"></script>
+<script src="https://anijs.github.io/lib/anijs/anijs-min.js"></script>
