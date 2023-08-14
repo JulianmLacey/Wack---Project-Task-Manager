@@ -5,7 +5,7 @@ const managerId = document.getElementById('manager-id');
 
 projectForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const Obj = {
+    const obj = {
         name: projectName.value,
         missions_statement: missionStatement.value,
         manager_id: managerId.value
@@ -15,7 +15,7 @@ projectForm.addEventListener('submit', async function (e) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Obj)
+        body: JSON.stringify(obj)
     })
 
     if (response.ok) {
