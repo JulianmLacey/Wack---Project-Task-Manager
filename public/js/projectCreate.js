@@ -2,6 +2,7 @@ const projectForm = document.getElementById('project-form');
 const projectName = document.getElementById('project-name');
 const missionStatement = document.getElementById('mission-statement');
 
+
 projectForm.addEventListener('submit', async function (e) {
     e.preventDefault();
     const obj = {
@@ -16,8 +17,23 @@ projectForm.addEventListener('submit', async function (e) {
         body: JSON.stringify(obj)
     })
 
+
     if (response.ok) {
-        window.location.href = '/home'
+        Swal.fire({
+            title: 'Sweet!',
+            text: 'Modal with a custom image.',
+            imageUrl: 'https://unsplash.it/400/200',
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+          
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/home'
+            }
+        })
+        
+        
     } else {
         const json = await response.json()
         console.log(json)
