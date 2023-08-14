@@ -5,11 +5,10 @@
 
 <div class="projects-container">
     {{#each projects}}
-    <div class="project">
+    <a href="/home/{{id}}" class="project">
         <h3>{{name}}</h3>
         <p>{{missions_statement}}</p>
         <p>Manager: {{this.username}}</p>
-    </div>
     {{/each}}
 </div>
 
