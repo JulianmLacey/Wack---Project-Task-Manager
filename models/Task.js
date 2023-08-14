@@ -25,15 +25,13 @@ Task.init(
 			defaultValue: DataTypes.NOW,
 		},
 		status: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.BOOLEAN,
 			allowNull: false,
+			defaultValue: false,
 		},
 		priority: {
 			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
-		timeline: {
-			type: DataTypes.FLOAT,
+			allowNull: true,
 		},
 		project_id: {
 			type: DataTypes.INTEGER,

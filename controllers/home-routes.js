@@ -37,13 +37,14 @@ router.get('/:id', async (req, res) => {
                     model: Task,
                     include: {
                         model: Project,
-                        attributes:['id']
+                        attributes: ['id']
                     }
                 }
-                
+
             ]
         });
-        const parsedProject = specProject.get ({plain: true});
+        const parsedProject = specProject.get({ plain: true });
+        console.log(parsedProject);
         parsedProject.username = parsedProject.user.name
         res.render('project', { project: parsedProject, loggedIn: req.session.log_in });
     } catch (error) {
