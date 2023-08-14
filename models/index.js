@@ -20,19 +20,19 @@ Task.belongsTo(Project, {
 });
 
 Project.hasMany(Comment, {
-	foreignKey: "user_id",
+	foreignKey: "project_id",
 });
 
 Comment.belongsTo(Project, {
+	foreignKey: "project_id",
+});
+
+User.hasMany(Comment, {
 	foreignKey: "user_id",
 });
 
-User.hasOne(Comment, {
-	foreignKey: "project_id",
-});
-
 Comment.belongsTo(User, {
-	foreignKey: "project_id",
+	foreignKey: "user_id",
 });
 
 User.belongsToMany(Project, {

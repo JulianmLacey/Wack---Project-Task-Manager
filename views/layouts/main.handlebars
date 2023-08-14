@@ -1,17 +1,19 @@
-<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>LOGIN</title>
 		<link rel="stylesheet" href="/css/jass.css" />
-<link rel="stylesheet" href="https://unpkg.com/@blaze/css@x.x.x/dist/blaze/blaze.css">
-<script type="module" src="https://unpkg.com/@blaze/atoms@x.x.x/dist/blaze-atoms/blaze-atoms.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/@blaze/atoms@x.x.x/dist/blaze-atoms/blaze-atoms.js"></script>
-<link rel="stylesheet" href="/css/style.css" />
-</head>
-   <nav>
-    	<ul>
+		<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="https://unpkg.com/@blaze/css@x.x.x/dist/blaze/blaze.css" />
+		<script type="module" src="https://unpkg.com/@blaze/atoms@x.x.x/dist/blaze-atoms/blaze-atoms.esm.js"></script>
+		<script nomodule="" src="https://unpkg.com/@blaze/atoms@x.x.x/dist/blaze-atoms/blaze-atoms.js"></script>
+		<script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.0/dist/js/tabulator.min.js"></script>
+		<link rel="stylesheet" href="/css/style.css" />
+	</head>
+	<nav>
+		<ul>
 			<li>
 				<h1>WACK</h1>
 			</li>
@@ -19,12 +21,12 @@
 				<a href="/">Home</a>
 			</li>
 			{{#if logged_in}}
-			<li>
-				<a href="/profile">profile</a>
-			</li>
-			<li>
-				<button class="no-button" id="logout">logout</button>
-			</li>
+				<li>
+					<a href="/profile">profile</a>
+				</li>
+				<li>
+					<button class="no-button" id="logout">logout</button>
+				</li>
 			{{else}}
 				<li>
 					<a href="/login">Login</a>
@@ -33,11 +35,10 @@
 					<a href="/signup">Sign Up</a>
 				</li>
 			{{/if}}
-  	</ul>
+		</ul>
 
-    </nav>
-
+	</nav>
+	<body>
 		{{{body}}}
 	</body>
-
-
+</html>

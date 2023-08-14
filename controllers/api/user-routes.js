@@ -54,7 +54,7 @@ router.post("/logout", (req, res) => {
 	}
 });
 
-//put update user
+//PUT /:projects - Add User to Project
 router.put("/projects", async (req, res) => {
 	try {
 		const user = await User.findOne({ where: { id: req.session.user_id } });
@@ -65,6 +65,7 @@ router.put("/projects", async (req, res) => {
 	}
 });
 
+/*
 router.get("/projects", async (req, res) => {
 	try {
 		const user = await User.findOne({
@@ -75,7 +76,7 @@ router.get("/projects", async (req, res) => {
 					as: "projects",
 					include: [
 						{ model: Task, as: "tasks" },
-						{ model: Comment, as: "comments" },
+						{ model: Comment, as: "comments", include: [{ model: User, as: "creator" }] }, //, include: [{ model: User, as: "creator" }] },
 					],
 				},
 			],
@@ -86,7 +87,40 @@ router.get("/projects", async (req, res) => {
 		res.status(500).json(err);
 	}
 });
+*/
+
+router.get("/projects", async (req, res) => {
+	try {
+		const user = await User.findOne({
+			where: { id: req.session.user_id },
+			include: [
+				{
+					model: Project,
+					as: "projects",
+					include: [{ all: true, nested: true }],
+				},
+			],
+		});
+		//const projects = await user.getProjects();
+		res.status(200).json(user);
+	} catch (err) {
+		res.status(500).json(err);
+	}
+});
+
+/*
+			include: [
+				{
+					model: Project,
+					as: "projects",
+					include: [
+						{ model: Task, as: "tasks" },
+						{ model: Comment, as: "comments" },
+					],
+				},
+			],
+
+*/
 
 //delete user
-
 module.exports = router;

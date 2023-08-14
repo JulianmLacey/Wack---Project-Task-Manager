@@ -1,24 +1,70 @@
-<div role="menu" class="c-card c-card--menu">
+<table class="c-table c-table--striped" style="padding: 5px; height: 30%;">
+	<caption class="c-table__caption">TASKS</caption>
+	<thead class="c-table__head">
+		<tr class="c-table__row c-table__row--heading">
+			<th class="c-table__cell">Task</th>
+			<th class="c-table__cell">Status</th>
+			<th class="c-table__cell">Prority</th>
+			<th class="c-table__cell">TimeLine</th>
+		</tr>
+	</thead>
+	<tbody class="c-table__body scrollable">
+		{{#each taskData as |task|}}
+			<tr class="c-table__row">
+				<td class="c-table__cell">{{task.taskName}}</td>
+				<td class="c-table__cell">{{task.status}}</td>
+				<td class="c-table__cell">{{task.priority}}</td>
+				<td class="c-table__cell">{{task.timeline}}</td>
+			</tr>
+		{{/each}}
 
-	{{#each projects as |project|}}
-		<button role="menuitem" class="c-card__control">{{project.title}}</button>
+	</tbody>
+</table>
 
+<table class="c-table c-table--striped" style="padding: 5px;">
+	<caption class="c-table__caption">Comments</caption>
+	<thead class="c-table__head">
+		<tr class="c-table__row c-table__row--heading">
+			<th class="c-table__cell">Comments</th>
+			<th class="c-table__cell"></th>
+			<th class="c-table__cell"></th>
+			<th class="c-table__cell"></th>
+		</tr>
+	</thead>
+	<tbody class="c-table__body scrollable">
+		{{#each commentData as |comment|}}
+			<tr class="c-table__row">
+				<td class="c-table__cell">{{comment.user.name}}</td>
+				<td class="c-table__cell">{{comment.content}}</td>
+				<td class="c-table__cell">{{comment.date_created}}</td>
+			</tr>
+		{{/each}}
+	</tbody>
+</table>
+
+<div role="menu" class="c-card c-card--menu u-large" style="width: 24%; height: 900px%; margin:0px; display:inline; position:absolute;">
+
+	{{#each projectData as |project|}}
+		<button role="menuitem" class="c-card__control c-card__control--width-20" id="{{project.id}}">{{project.name}}</button>
 	{{/each}}
 
 	<div role="separator" class="c-card__divider"></div>
 	<blaze-accordion>
-		<blaze-accordion-pane closed header="JOIN PROJECT">
+		<blaze-accordion-pane header="JOIN PROJECT">
 			<input class="c-field" placeholder="Project Key" type="text" id="addprojectinput" />
-			<button role="menuitem" class="c-card__control addbutton">ADD PROJECT</button>
+			<button type="button" role="menuitem" class="c-card__control" id="addprojButton">Join PROJECT</button>
 
 		</blaze-accordion-pane>
 		<blaze-accordion-pane header="ADD PROJECT">
 			<input class="c-field" placeholder="Project Title" type="text" id="addprojectinputtitle" />
-			<testarea class="c-field" placeholder="Project Description" type="text" id="addprojectinputdescription" />
+			<input class="c-field" placeholder="Project Description" type="text" id="addprojectinputdescription" />
 
-			<button role="menuitem" class="c-card__control joinbutton">JOIN PROJECT</button>
+			<button type="button" role="menuitem" class="c-card__control" id="joinButton">Add PROJECT</button>
 
 		</blaze-accordion-pane>
 	</blaze-accordion>
 </div>
+
+<script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
+
 <script src="/js/menu.js"></script>
