@@ -3,6 +3,7 @@ const username = document.getElementById('username')
 const password = document.getElementById('password')
 
 
+
 signUpForm.addEventListener('submit', async function (event) {
 	event.preventDefault()
 
@@ -21,7 +22,7 @@ signUpForm.addEventListener('submit', async function (event) {
 	})
 
 	if (response.ok) {
-		window.location.href = '/'
+		window.location.href = '/login'
 	} else {
 		const json = await response.json()
 	}
