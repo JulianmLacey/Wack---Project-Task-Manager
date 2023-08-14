@@ -3,13 +3,13 @@ const { User } = require("../models");
 //const Auth = require('../utils/auth');
 
 router.get("/", async (req, res) => {
-    const loggedIn = req.session.log_in
+    const loggedIn = req.session.logged_in
     if (loggedIn) {
         res.render("home")
-    }else {
+    } else {
         res.render("verify");
     }
-   
+
 });
 
 router.get("/login", async (req, res) => {

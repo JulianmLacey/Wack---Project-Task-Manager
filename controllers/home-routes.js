@@ -12,8 +12,7 @@ router.get('/', async (req, res) => {
             parsedProject.username = parsedProject.user.name;
             return parsedProject;
         });
-
-        res.render('home', { projects: parsedProjects, loggedIn: req.session.log_in })
+        res.render('home', { projects: parsedProjects, loggedIn: req.session.logged_in })
     } catch (error) {
         console.log(error)
     }
@@ -46,7 +45,7 @@ router.get('/:id', async (req, res) => {
         const parsedProject = specProject.get({ plain: true });
         console.log(parsedProject);
         parsedProject.username = parsedProject.user.name
-        res.render('project', { project: parsedProject, loggedIn: req.session.log_in });
+        res.render('project', { project: parsedProject, loggedIn: req.session.logged_in });
     } catch (error) {
         console.log(error);
         res.status(400)

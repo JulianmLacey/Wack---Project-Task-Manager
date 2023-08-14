@@ -64,7 +64,7 @@ router.post('/login', async (req, res) => {
 
       req.session.save(() => {
         req.session.user_id = user.id;
-        req.session.log_in = true;
+        req.session.logged_in = true;
         res.status(200).json("Successful")
       })
 
@@ -78,9 +78,9 @@ router.post('/login', async (req, res) => {
 //post logout
 router.post('/logout', (req, res) => {
   // if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
+  req.session.destroy(() => {
+    res.status(204).end();
+  });
   // } else {
   //   res.status(404).end();
   // }
@@ -88,27 +88,27 @@ router.post('/logout', (req, res) => {
 
 //put update user
 
-router.post('/', async (req, res) => {
-  try {
-    console.log(req.body)
-    const { username, password } = req.body
-    if (username && password) {
-      const userData = await User.create({
-        username,
-        password
-      })
-      req.session.save(() => {
-        req.session.user_id = userData.id;
-        req.session.log_in = true;
-        res.status(200).json("Successful")
-      })
-    } else {
-      res.status(400).json({ message: "Error" })
-    }
-  } catch (error) {
-    res.status(500).json({ message: "Error" })
-  }
-})
+// router.post('/', async (req, res) => {
+//   try {
+//     console.log(req.body)
+//     const { username, password } = req.body
+//     if (username && password) {
+//       const userData = await User.create({
+//         username,
+//         password
+//       })
+//       req.session.save(() => {
+//         req.session.user_id = userData.id;
+//         req.session.logged_in = true;
+//         res.status(200).json("Successful")
+//       })
+//     } else {
+//       res.status(400).json({ message: "Error" })
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: "Error" })
+//   }
+// })
 
 
 
