@@ -1,31 +1,61 @@
 const router = require("express").Router();
-const { Project, User, Comment } = require("../../models");
+const { Project, Task, User, Comment } = require("../../models");
+const UUID = require("uuid-int");
+const idGenerator = UUID(0);
 
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
+	console.log(req);
 	try {
-		const projects = await Project.findAll({
-			where: { id: 3 },
-			attributes: ["taskName", "status", "priority", "timeline"],
+		const userData = await User.findOne({
+			where: { id: req.session.user_id },
+			include: [
+				{
+					model: Project,
+					as: "projects",
+				},
+			],
 		});
-		console.log(projects);
-		res.status(200).json(projects);
+
+		const projData = await Project.findOne({
+			where: { id: req.params.id },
+			include: [{ all: true, nested: true }],
+		});
+
+		const projectData = userData.projects.map((project) => project.get({ plain: true }));
+		const taskData = projData.tasks.map((task) => task.get({ plain: true }));
+		const commentData = projData.comments.map((task) => task.get({ plain: true }));
+		//res.status(200).json(projData[0].tasks);
+
+		res.render("home", {
+			projectData,
+			taskData,
+			commentData,
+			logged_in: true,
+		});
+		//, {
+		//...data,
+		//logged_in: req.session.logged_in,
+		//});
 	} catch (err) {
-		console.log(err);
 		res.status(500).json(err);
+		return;
 	}
 });
 
+//USING
 router.post("/", async (req, res) => {
 	// create a new Project
 	try {
-		const { id, name, missions_statement, manager_id } = req.body;
 		const newProject = await Project.create({
-			id,
-			name,
-			missions_statement,
-			manager_id,
+			id: idGenerator.uuid() >> 96,
+			name: req.body.title,
+			missions_statement: req.body.mission_statement,
+			manager_id: req.session.user_id,
 		});
-		res.status(200).json(newProject);
+
+		const user = await User.findOne({ where: { id: req.session.user_id } });
+		user.addProject(newProject.id);
+		res.status(200).json(user);
 	} catch (err) {
 		res.status(500).json(err);
 	}

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Project } = require("../../models/");
+const { Project, Comment, User, Task } = require("../../models/");
 
 /* /dev/Project
 GET / - GET ALL Project
@@ -21,8 +21,12 @@ router.get("/", async (req, res) => {
 //GET SINGLE Project
 router.get("/:id", async (req, res) => {
 	try {
-		const Project = await Project.findByPK(req.params.id);
-		res.status(200).json(Project);
+		console.log(req.params.id);
+		const proj = await Project.findOne({
+			where: { id: req.params.id },
+			include: [{ all: true, nested: true }],
+		});
+		res.status(200).json(proj);
 	} catch (err) {
 		res.status(400).json(err);
 	}
@@ -42,10 +46,10 @@ router.post("/", async (req, res) => {
 //UPDATE Project
 router.put("/:id", async (req, res) => {
 	try {
-		const Project = await Project.findByPK(req.params.id);
-		Project.set(req.body);
-		await Project.save();
-		res.status(200).json(Project);
+		const proj = await Project.findByPK(req.params.id);
+		proj.set(req.body);
+		await proj.save();
+		res.status(200).json(proj);
 	} catch (err) {
 		res.status(500).json(err);
 	}

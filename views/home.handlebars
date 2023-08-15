@@ -1,5 +1,36 @@
 <table class="c-table c-table--striped" style="padding: 5px; height: 30%;">
-	<caption class="c-table__caption">TASKS</caption>
+	<caption class="c-table__caption .u-center-block">TASKS
+		<blaze-accordion>
+			<blaze-accordion-pane class="addbutton" header="Add Task">
+				<div class="o-grid">
+					<div class="o-grid__cell o-grid__cell--width-70 c_cell">
+						<div class="o-grid__cell cell">
+							<input class="c-field" placeholder="Name" type="text" id="Name" />
+						</div>
+						<div class="o-grid__cell cell">
+							<input class="c-field" placeholder="Description" type="text" id="Description" />
+						</div>
+					</div>
+
+					<div class="o-grid__cell o-grid__cell--width-30 c_cell">
+						<div class="o-grid__cell cell">
+							<input class="c-field" placeholder="status" type="number" id="status" />
+						</div>
+						<div class="o-grid__cell cell">
+							<input class="c-field" placeholder="priority" type="number" id="priority" />
+						</div>
+						<div class="o-grid__cell cell">
+							<input class="c-field" placeholder="DaysLeft" type="number" id="DaysLeft" />
+						</div>
+					</div>
+				</div>
+
+				<button type="button" class="c-button addbutton cell" id="addtask">Add</button>
+			</blaze-accordion-pane>
+
+		</blaze-accordion>
+	</caption>
+
 	<thead class="c-table__head">
 		<tr class="c-table__row c-table__row--heading">
 			<th class="c-table__cell">Task</th>
@@ -22,7 +53,15 @@
 </table>
 
 <table class="c-table c-table--striped" style="padding: 5px;">
-	<caption class="c-table__caption">Comments</caption>
+	<caption class="c-table__caption .u-center-block">Comments
+		<blaze-accordion class="addtask">
+			<blaze-accordion-pane class="addbutton" header="Add Comment">
+				<input class="c-field" placeholder="Comment..." type="text" id="commentInput" />
+				<button type="button" class="c-button addbutton cell" id="addComment">Post</button>
+			</blaze-accordion-pane>
+		</blaze-accordion>
+
+	</caption>
 	<thead class="c-table__head">
 		<tr class="c-table__row c-table__row--heading">
 			<th class="c-table__cell">Comments</th>
@@ -42,7 +81,7 @@
 	</tbody>
 </table>
 
-<div role="menu" class="c-card c-card--menu u-large" style="width: 24%; height: 900px%; margin:0px; display:inline; position:absolute;">
+<div role="menu" class="c-card c-card--menu u-large MenuItem" id="projectMenu">
 
 	{{#each projectData as |project|}}
 		<button role="menuitem" class="c-card__control c-card__control--width-20" id="{{project.id}}">{{project.name}}</button>
@@ -52,14 +91,14 @@
 	<blaze-accordion>
 		<blaze-accordion-pane header="JOIN PROJECT">
 			<input class="c-field" placeholder="Project Key" type="text" id="addprojectinput" />
-			<button type="button" role="menuitem" class="c-card__control" id="addprojButton">Join PROJECT</button>
+			<button type="button" role="menuitem" class="c-card__control" id="joinProjButton">Join PROJECT</button>
 
 		</blaze-accordion-pane>
 		<blaze-accordion-pane header="ADD PROJECT">
 			<input class="c-field" placeholder="Project Title" type="text" id="addprojectinputtitle" />
 			<input class="c-field" placeholder="Project Description" type="text" id="addprojectinputdescription" />
 
-			<button type="button" role="menuitem" class="c-card__control" id="joinButton">Add PROJECT</button>
+			<button type="button" role="menuitem" class="c-card__control" id="addprojButton">Add PROJECT</button>
 
 		</blaze-accordion-pane>
 	</blaze-accordion>

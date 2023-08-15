@@ -18,15 +18,13 @@ router.get("/", async (req, res) => {
 	}
 });
 
+// create a new comment
 router.post("/", async (req, res) => {
-	// create a new comment
 	try {
-		const { content, project_id } = req.body;
-		const user_id = req.session.user_id;
 		const newComment = Comment.create({
-			content: content,
-			user_id: user_id,
-			project_id: project_id,
+			content: req.body.content,
+			user_id: req.session.user_id,
+			project_id: req.body.project_id,
 		});
 		res.status(200).json(newComment);
 	} catch (err) {

@@ -37,21 +37,9 @@ router.get("/:id", async (req, res) => {
 //CREATE TASKS
 router.post("/", async (req, res) => {
 	try {
-		const { taskName, description, date_created, status, priority, timeline } = req.body;
-		const newTask = await Task.create({
-			taskName,
-			description,
-			date_created,
-			status,
-			priority,
-			timeline,
-			include: [
-				{
-					model: Project,
-					attributes: ["id"],
-				},
-			],
-		});
+		const newTask = await Task.create(req.body);
+		newTask.user_id = req.session.user_id;
+		await newTask.save();
 		res.status(200).json(newTask);
 	} catch (err) {
 		res.status(500).json(err);
