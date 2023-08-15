@@ -1,0 +1,5 @@
+const sameUser = (comUser, user) => {
+	return comUser === user;
+};
+
+module.exports = sameUser;

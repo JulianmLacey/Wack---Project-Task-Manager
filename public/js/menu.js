@@ -38,6 +38,7 @@ document.querySelector("#joinProjButton").addEventListener("click", async (event
 		alert(respose.statusText);
 	}
 });
+
 document.querySelector("#addtask").addEventListener("click", async (event) => {
 	console.log("addTask clicked");
 	const taskName = document.getElementById("Name").value.trim();
@@ -101,6 +102,81 @@ menuItems.forEach((item) => {
 		SelectedProject = id;
 		if (Number.isInteger(id) && id > 0 && containsOnlyNumbers(e.target.id)) {
 			clickEvent(e.target.id);
+		}
+		return;
+	});
+});
+
+let delTask = document.querySelectorAll(".taskDel");
+let delTaskEvent = async (id) => {
+	console.log("cliked for Delete task: " + id);
+
+	const response = await fetch("/api/tasks", {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ id }),
+	});
+
+	if (response.ok) {
+		window.location.reload();
+	} else {
+		alert(respose.statusText);
+	}
+};
+
+delTask.forEach((item) => {
+	item.addEventListener("click", (e) => {
+		e.preventDefault();
+		const id = Number(e.target.id.slice(4));
+		console.log(id);
+		console.log(id.length);
+		if (id > 0) {
+			delTaskEvent(id);
+		}
+		return;
+	});
+});
+
+let delComment = document.querySelectorAll(".commentDel");
+let delCommentEvent = async (id) => {
+	console.log("cliked for Delete task: " + id);
+	Swal.fire({
+		title: "Error!",
+		text: "Do you want to continue",
+		icon: "error",
+		confirmButtonText: "Cool",
+	});
+	const response = await fetch("/api/comments", {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ id }),
+	});
+
+	if (response.ok) {
+		window.location.reload();
+	} else {
+		alert(respose.statusText);
+	}
+};
+
+delComment.forEach((item) => {
+	item.addEventListener("click", (e) => {
+		e.preventDefault();
+		const id = Number(e.target.id.slice(4));
+		Swal.fire({
+			title: "Error!",
+			text: "Do you want to continue",
+			icon: "error",
+			confirmButtonText: "Cool",
+		});
+		console.log(id);
+		console.log(id.length);
+		if (id > 0) {
+			delCommentEvent(id);
 		}
 		return;
 	});

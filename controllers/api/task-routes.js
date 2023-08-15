@@ -14,10 +14,10 @@ router.post("/", async (req, res) => {
 });
 
 //DELETE TASK
-router.delete("/:id", async (req, res) => {
+router.delete("/", async (req, res) => {
 	// delete a comment by its `id` value
 	try {
-		const task = await Task.destroy({ where: { id: req.params.id } });
+		const task = await Task.destroy({ where: { id: req.body.id } });
 		res.status(200).json(task);
 	} catch (err) {
 		res.status(500).json(err);

@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 3001;
 
 //const hbs = exphbs.create({ helpers });
 const handles = expHandles.create();
+const sameUser = require("./utils/handlebarsHelper");
+handles.handlebars.registerHelper("sameUser", sameUser);
 
 const Session = {
 	secret: "Super secret secret",

@@ -37,6 +37,7 @@
 			<th class="c-table__cell">Status</th>
 			<th class="c-table__cell">Prority</th>
 			<th class="c-table__cell">TimeLine</th>
+			<th class="c-table__cell"></th>
 		</tr>
 	</thead>
 	<tbody class="c-table__body scrollable">
@@ -46,7 +47,32 @@
 				<td class="c-table__cell">{{task.status}}</td>
 				<td class="c-table__cell">{{task.priority}}</td>
 				<td class="c-table__cell">{{task.timeline}}</td>
+				<td class="c-table__cell">
+					<button type="button" class="c-button u-small cell taskEdit" style="background-color: blueviolet;" id="edit-{{task.id}}">Edit</button>
+					<button type="button" class="c-button u-small cell taskDel" style="background-color: blueviolet;" id="del-{{task.id}}">Delete</button>
+				</td>
 			</tr>
+			<blaze-modal dismissible id="taskmodal-{{task.id}}">
+				<blaze-card>
+					<blaze-card-header>
+						<h2 class="c-heading u-xlarge">
+							Heading
+							<div class="c-heading__sub">Sub-heading</div>
+						</h2>
+					</blaze-card-header>
+					<blaze-card-body>
+						<p class="c-paragraph">
+							Lorem ipsum dolor sit amet, feugiat corpora ex eam. Inciderint eloquentiam sea et.
+						</p>
+					</blaze-card-body>
+					<blaze-card-footer>
+						<div class="c-input-group">
+							<button class="c-button c-button--block c-button--brand">Button</button>
+							<button class="c-button c-button--block c-button--info">Button</button>
+						</div>
+					</blaze-card-footer>
+				</blaze-card>
+			</blaze-modal>
 		{{/each}}
 
 	</tbody>
@@ -76,6 +102,12 @@
 				<td class="c-table__cell">{{comment.user.name}}</td>
 				<td class="c-table__cell">{{comment.content}}</td>
 				<td class="c-table__cell">{{comment.date_created}}</td>
+				{{#if (sameUser comment.user_id userID)}}
+					<td class="c-table__cell">
+						<button type="button" class="c-button u-small cell commentEdit" style="background-color: blueviolet;" id="edit-{{comment.id}}">Edit</button>
+						<button type="button" class="c-button u-small cell commentDel" style="background-color: blueviolet;" id="del-{{comment.id}}">Delete</button>
+					</td>
+				{{/if}}
 			</tr>
 		{{/each}}
 	</tbody>
