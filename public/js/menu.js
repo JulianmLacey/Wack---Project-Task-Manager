@@ -1,5 +1,6 @@
 var SelectedProject = null;
 var urlParams = new URLSearchParams(window.location.search);
+
 document.querySelector("#addprojButton").addEventListener("click", async (event) => {
 	const title = document.getElementById("addprojectinputtitle").value.trim();
 	const mission_statement = document.getElementById("addprojectinputdescription").value.trim();
@@ -19,7 +20,9 @@ document.querySelector("#addprojButton").addEventListener("click", async (event)
 });
 
 document.querySelector("#joinProjButton").addEventListener("click", async (event) => {
+	console.log("joined Project clicked");
 	const id = document.getElementById("addprojectinput").value.trim();
+	console.log(id);
 	event.preventDefault();
 	const response = await fetch("/api/users/projects", {
 		method: "PUT",
@@ -29,6 +32,7 @@ document.querySelector("#joinProjButton").addEventListener("click", async (event
 		body: JSON.stringify({ id }),
 	});
 	if (response.ok) {
+		console.log("joined Project Sucess");
 		window.location.reload();
 	} else {
 		alert(respose.statusText);
@@ -101,28 +105,3 @@ menuItems.forEach((item) => {
 		return;
 	});
 });
-
-/*
-document.querySelectorAll(".MenuItem").addEventListener("click", async (e) => {
-	
-	console.log(e.target.id);
-	try {
-		const response = await fetch("/api/projects", {
-			method: "GET",
-			params: { id: e.target.id },
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-
-		if (response.ok) {
-			//window.location.reload();
-		} else {
-			alert(respose.statusText);
-		}
-	} catch (err) {
-		console.log(err);
-		res.status(500).json(err);
-	}
-});
-*/
