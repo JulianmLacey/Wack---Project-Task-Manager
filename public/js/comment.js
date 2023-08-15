@@ -18,7 +18,6 @@ taskForm.addEventListener('submit', async function (e) {
         date_created: '2023-08-13',
         status: 1,
         priority: 2,
-        timeline: 0.944868217283818,
         user_id: 12,
         project_id: projectId
 
