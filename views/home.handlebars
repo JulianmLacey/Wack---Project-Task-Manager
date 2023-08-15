@@ -1,6 +1,6 @@
 
 
-
+{{#if loggedIn}}
 <div>
     <h3 style="text-align: center">Active Projects</h3>
 </div>
@@ -19,7 +19,9 @@
     </a>
     {{/each}}
 </div>
-
+{{else}}
+<h1>Signup or Log in</h1>
+{{/if}}
 <script src="/js/logout.js"></script>
 <script src="https://anijs.github.io/lib/anijs/anijs-min.js"></script>
 
