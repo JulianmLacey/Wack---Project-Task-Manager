@@ -142,7 +142,12 @@ delTask.forEach((item) => {
 let delComment = document.querySelectorAll(".commentDel");
 let delCommentEvent = async (id) => {
 	console.log("cliked for Delete task: " + id);
-
+	Swal.fire({
+		title: "Error!",
+		text: "Do you want to continue",
+		icon: "error",
+		confirmButtonText: "Cool",
+	});
 	const response = await fetch("/api/comments", {
 		method: "DELETE",
 		headers: {
@@ -162,6 +167,12 @@ delComment.forEach((item) => {
 	item.addEventListener("click", (e) => {
 		e.preventDefault();
 		const id = Number(e.target.id.slice(4));
+		Swal.fire({
+			title: "Error!",
+			text: "Do you want to continue",
+			icon: "error",
+			confirmButtonText: "Cool",
+		});
 		console.log(id);
 		console.log(id.length);
 		if (id > 0) {
