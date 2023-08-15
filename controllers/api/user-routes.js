@@ -3,8 +3,8 @@ const { User } = require("../../models/");
 
 
 
-//POST SIGNUP - add user
 
+//GET ALL USERS
 router.get('/', async (req, res) => {
   try {
     const users = await User.findAll();
@@ -13,7 +13,12 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 //Sign Up
+
+
+//POST SIGNUP - add user
+
 router.post('/', async (req, res) => {
   try {
     console.log(req.body)

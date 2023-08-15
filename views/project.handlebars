@@ -1,44 +1,60 @@
- <h1>{{project.name}}</h1>
+<div class="d-flex justify-content-center">
+    <h1>{{project.name}}</h1>
+</div>
 
-    <div>
-        <h2>Mission Statement</h2>
-        <p>{{project.missions_statement}}</p>
-    </div>
 
-    <div>
+<div class="text-center border border-secondary">
+    <h2>Mission Statement</h2>
+    <p>{{project.missions_statement}}</p>
+</div>
+
+<div class=" col-sm border border-primary">
+    <div class="container">
         <h3>Tasks</h3>
-         <div>
-            {{#each project.tasks}}
-            <h4>{{this.taskName}}</h4>
-            <p>Description : {{this.description}}</p>
-            {{/each}}
+        <div class="row">
+            <div class="col-sm">
+                {{#each project.tasks}}
+                <div class="row">
+                    <h5>To Do: {{this.taskName}}</h5>
+                    <p>Description : {{this.description}}</p>
+                </div>
+                {{/each}}
+            </div>
         </div>
         {{#if loggedIn}}
-        <form id="task-form">
-            <textarea id="task-name" placeholder="Task Name"></textarea>
-            <textarea id="task-description" placeholder="Description"></textarea>
+        <form id="task-form" class="d-flex justify-content-end">
+            <textarea id="task-name" placeholder="Task Name"class="form-control"></textarea>
+            <textarea id="task-description" placeholder="Description"class="form-control"></textarea>
             <button type="submit" id="task-btn">Submit</button>
         </form>
         {{else}}
         <h4>Must <span><a href="/login">log in</a></span> to add task</h4>
         {{/if}}
-
     </div>
-    <div>
-        <h3>Comments</h3>
-        {{#each project.comments}}
-        <h4>{{this.user.name}}</h4>
-        <p>{{this.content}}</p>
-        {{/each}}
-        {{#if loggedIn}}
-        <form id="comment-form">
-            <textarea id="content" placeholder="Add Comment"></textarea>
-            <button id="comment-btn">Add Comment</button>
-        </form>
-        {{else}}
-         <h4>Must <span><a href="/login">log in</a></span> to comment</h4>
-         {{/if}}  
+</div>
+<div class="container">
+    <h3>Comments</h3>
+    {{#each project.comments}}
+    <div class="row">
+        <div class="col-sm">
+            <h5>{{this.user.name}}</h5>
+        </div>
+        <div class="col-sm">
+            <p>{{this.content}}</p>
+        </div>
     </div>
+    {{/each}}
+    {{#if loggedIn}}
+    <div class="d-flex justify-content-center">
+    <form id="comment-form">
+        <textarea id="content" placeholder="Add Comment" class="form-control w-50"></textarea>
+        <button id="comment-btn" >Add Comment</button>
+    </div>
+    </form>
+    {{else}}
+    <h4>Must <span><a href="/login">log in</a></span> to comment</h4>
+    {{/if}}
+</div>
 
 
 
