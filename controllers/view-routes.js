@@ -25,6 +25,7 @@ router.get("/", Auth, async (req, res) => {
 					taskData,
 					commentData,
 					logged_in: true,
+					userId: req.session.user_id,
 				});
 			} else {
 				res.render("home", {

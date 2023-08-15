@@ -27,6 +27,7 @@ router.get("/:id", async (req, res) => {
 			taskData,
 			commentData,
 			logged_in: true,
+			userId: req.session.user_id,
 		});
 	} catch (err) {
 		res.status(500).json(err);
