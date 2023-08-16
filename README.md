@@ -12,6 +12,8 @@
 
 ## Description
 
+Wack is designed to be a task/ project manager allowing users to join/create different projects, ad tasks within projects, and comments.
+
 ## User Story
 
 ## Acceptance Criteria

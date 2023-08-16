@@ -110,7 +110,7 @@ menuItems.forEach((item) => {
 let delTask = document.querySelectorAll(".taskDel");
 let delTaskEvent = async (id) => {
 	console.log("cliked for Delete task: " + id);
-
+	Swal.fire("Any fool can use a computer");
 	const response = await fetch("/api/tasks", {
 		method: "DELETE",
 		headers: {
@@ -177,6 +177,98 @@ delComment.forEach((item) => {
 		console.log(id.length);
 		if (id > 0) {
 			delCommentEvent(id);
+		}
+		return;
+	});
+});
+
+let editTask = document.querySelectorAll(".taskEdit");
+
+async function getTaskData(id) {
+	try {
+		console.log("cliked for Edit task: " + id);
+		const savedTask = await fetch("/api/task", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			params: JSON.stringify({ id }),
+		});
+		return savedTask;
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+let taskEditEvent = async (id) => {
+	const taskData = await getTaskData(id);
+
+	if (taskData) {
+		Swal.fire({
+			title: "Edit Task",
+			html: `<div class="o-grid">
+			<div class="o-grid__cell o-grid__cell--width-70 c_cell">
+				<div class="o-grid__cell cell">
+					<input class="c-field" placeholder="${taskData.taskName}" type="text" id="Name" />
+				</div>
+				<div class="o-grid__cell cell">
+					<input class="c-field" placeholder="${taskData.description}" type="text" id="Description" />
+				</div>
+			</div>
+
+			<div class="o-grid__cell o-grid__cell--width-30 c_cell">
+				<div class="o-grid__cell cell">
+					<input class="c-field" placeholder="${taskData.status}" type="number" id="status" />
+				</div>
+				<div class="o-grid__cell cell">
+					<input class="c-field" placeholder="${taskData.priority}" type="number" id="priority" />
+				</div>
+				<div class="o-grid__cell cell">
+					<input class="c-field" placeholder="${taskData.timeline}" type="number" id="DaysLeft" />
+				</div>
+			</div>
+		</div>`,
+			confirmButtonText: "Save",
+			preConfirm: () => {
+				const taskName = Swal.getPopup().querySelector("#Name").value.trim();
+				const description = Swal.getPopup().querySelector("#Description").value.trim();
+				const status = Swal.getPopup().querySelector("#status").value.trim();
+				const priority = Swal.getPopup().querySelector("#priority").value.trim();
+				const timeline = Swal.getPopup().querySelector("#Daysleft").value.trim();
+
+				return { taskName: taskName, description: description, status: status, priority: priority, timeline: timeline };
+			},
+			input: "text",
+			icon: "error",
+		}).then((result) => {
+			console.log(result);
+		});
+	}
+	/*.then((result)=>{
+	const response = await fetch("/api/task", {
+		method: "PUT",
+		params: id;
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(result),
+	}););
+*/
+	if (response.ok) {
+		window.location.reload();
+	} else {
+		alert(respose.statusText);
+	}
+};
+
+editTask.forEach((item) => {
+	item.addEventListener("click", (e) => {
+		e.preventDefault();
+		const id = Number(e.target.id.slice(5));
+		console.log(id);
+		console.log(id.length);
+		if (id > 0) {
+			taskEditEvent(id);
 		}
 		return;
 	});

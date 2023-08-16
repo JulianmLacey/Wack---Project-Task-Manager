@@ -102,12 +102,8 @@
 				<td class="c-table__cell">{{comment.user.name}}</td>
 				<td class="c-table__cell">{{comment.content}}</td>
 				<td class="c-table__cell">{{comment.date_created}}</td>
-				{{#if (sameUser comment.user_id userID)}}
-					<td class="c-table__cell">
-						<button type="button" class="c-button u-small cell commentEdit" style="background-color: blueviolet;" id="edit-{{comment.id}}">Edit</button>
-						<button type="button" class="c-button u-small cell commentDel" style="background-color: blueviolet;" id="del-{{comment.id}}">Delete</button>
-					</td>
-				{{/if}}
+				<td class="c-table__cell">{{comment.content}}</td>
+
 			</tr>
 		{{/each}}
 	</tbody>

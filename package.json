@@ -9,7 +9,16 @@
 		"seed": "node seeds/seed.js",
 		"watch": "nodemon server.js"
 	},
-	"keywords": [],
+	"keywords": [
+		"heroku",
+		"express",
+		"sequelize",
+		"mysql2",
+		"bcrypt",
+		"express-session",
+		"connect-session-sequelize",
+		"Wack"
+	],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
@@ -19,6 +28,7 @@
 		"express": "^4.17.1",
 		"express-handlebars": "^5.2.0",
 		"express-session": "^1.17.1",
+		"handlebars": "^4.7.8",
 		"heroku": "^8.2.0",
 		"micromodal": "^0.4.10",
 		"mysql2": "^2.2.5",

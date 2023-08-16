@@ -2,6 +2,8 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	--main-color: blueviolet;
+	--secondary-color: #2d3b55;
 }
 
 html {
@@ -9,7 +11,7 @@ html {
 }
 
 body {
-	background-color: #2d3b55;
+	background-color: var(--secondary-color);
 	font-family: "Rubik", sans-serif;
 	height: 100%;
 }

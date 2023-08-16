@@ -19,13 +19,12 @@ router.get("/", Auth, async (req, res) => {
 				const projectData = userData.projects.map((project) => project.get({ plain: true }));
 				const taskData = userData.projects[0].tasks.map((task) => task.get({ plain: true }));
 				const commentData = userData.projects[0].comments.map((task) => task.get({ plain: true }));
-				console.log(projectData);
+				console.log(req.session.user_id);
 				res.render("home", {
 					projectData,
 					taskData,
 					commentData,
 					logged_in: true,
-					userId: req.session.user_id,
 				});
 			} else {
 				res.render("home", {

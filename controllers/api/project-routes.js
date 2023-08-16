@@ -22,12 +22,14 @@ router.get("/:id", async (req, res) => {
 		const projectData = userData.projects.map((project) => project.get({ plain: true }));
 		const taskData = projData.tasks.map((task) => task.get({ plain: true }));
 		const commentData = projData.comments.map((task) => task.get({ plain: true }));
+		const userdata = userData.id.get({ plain: true });
+
 		res.render("home", {
 			projectData,
 			taskData,
 			commentData,
+			sessuserid: userdata,
 			logged_in: true,
-			userId: req.session.user_id,
 		});
 	} catch (err) {
 		res.status(500).json(err);
