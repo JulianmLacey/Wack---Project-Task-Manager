@@ -14,6 +14,10 @@
 
 Wack is designed to be a task/ project manager allowing users to join/create different projects, ad tasks within projects, and comments.
 
+## Docs
+
+View Docs.md
+
 ## User Story
 
 - To be able to sign up and sign in,
@@ -43,6 +47,7 @@ Wack is designed to be a task/ project manager allowing users to join/create dif
 - Add comments
 - Create a project, or join using a key
 - Login/Signup pages
+- Dev REST API
 
 ## Live Demo
 
@@ -61,8 +66,9 @@ This is a link to the live application:
 
 ## New Technology
 
-- Sweet Alerts 2
-- BlazeUI
+- Faker - Generate Seed Data
+- Sweet Alerts 2 - Popups
+- BlazeUI - UI FrameWork
 
 ## License
 

@@ -1,12 +1,5 @@
 # SLACK CLONE/PROJECT TRACKER - WACK - DOCUMENTATION
 
-KEEP DOCS UP TO DATE WITH EACH COMMIT TO MAKE LIFE EASIER.
-
-What too add:
-make a function, slap it in the docs
-
-## TODO:
-
 ### DATABASE
 
 - SEEDS
@@ -15,58 +8,178 @@ make a function, slap it in the docs
 
 ### ROUTES - sessions/cookies
 
-- POST signup credentials
-- POST LOGIN CREDENTIALS
+/ - View Routes
+-/ -home dashboard (signup if not logged in)
+-/login
+-/signup
 
-- on valid login return session cookie and render page with user information
+/api - app used api
 
-  - User Channels
-
-  - Channel Messages (PREVIOUS 20?)
-
-    - TEXT
-    - CREATED_BY
-    - Author name from userID
-
-  - Organization
-    - TASKBOARD
-      - Tasks
-        - priority
-        - status
-        - timeline
+/dev - all api routes
+GET, GET/:id, POST, PUT, DELETE for each endpoint
+-/tasks
+-/comments
+-/users
+-/projects
+-/comments
 
 ## API
 
-- CREATE TASK
-- CREATE CHANNEL
-
-- POST MESSAGE
-
 ## DATABASE
 
-### Channels
+wack_db
 
-- id: CHANNELID
-- name: STRING
-- isPublic
-  - YES; ALL USERS
-  - NO; ONLY TASK USERS
-    - TASK ASSIGNED TO
-  - NO; ONLY INVITED USERS
-- HAS MANY MESSAGES
-- BELONGS TO MANY USERS
+## Models
 
-### Users
+### Projects
 
-- id: USERID
-- USER_TASKLIST
-- EMAIL: string
-- PASSWORD: string - HASHED
+- id:
+  INT
+  allowNull: false
 
-- PROFILE
-  - NAME
-  - PROFILE PIC?
-  - BIO
+-name:
+STRING,
+allowNull: false,
+
+- missions_statement:
+  STRING,
+  allowNull: false
+
+- manager_id:
+  INT,
+  allowNull: false,
+  references:
+  model: "user",
+  key: "id",
+
+### User
+
+- id:
+  INT,
+  allowNull: false,
+  primaryKey: true,
+  autoIncrement: true,
+
+- name:
+  STRING,
+  allowNull: false,
+
+- email:
+  STRING,
+  allowNull: false,
+  unique: true,
+  validate: {
+  isEmail: true,
+  },
+- password:
+  STRING,
+  allowNull: false,
+  validate:
+  len: [8],
+
+* Not Used \*
+
+- project_s:
+  INTEGER,
+  allowNull: true,
+  unique: false,
+
+### Tasks
+
+- id:
+  INT,
+  allowNull: false,
+  primaryKey: true,
+  autoIncrement: true,
+- taskName:
+  STRING,
+  allowNull: false,
+- description:
+  STRING,
+
+- date_created:
+  DATE,
+  allowNull: false,
+  defaultValue: DataTypes.NOW,
+
+- status:
+  INT,
+  allowNull: false,
+- priority:
+  INT,
+  allowNull: false,
+- timeline:
+  FLOAT,
+- project_id:
+  INT,
+  references:
+  model: "project",
+  key: "id",
+
+### Comments
+
+- id:
+  INT,
+  allowNull: false,
+  primaryKey: true,
+  autoIncrement: true,
+
+- content:
+  STRING,
+
+- date_created:
+  DATEONLY,
+  allowNull: false,
+  defaultValue: DataTypes.NOW,
+
+- user_id:
+  INT,
+  references:
+  model: "user",
+  key: "id",
+  unique: false,
+
+- project_id:
+  INT,
+  references:
+  model: "project",
+  key: "id",
+  unique: false,
+
+## Sequalize Associations
+
+- User - hasOne - Project
+  foreignKey: manager_id
+
+- Project - belongsTo - User
+  foreignKey: manager_id
+
+- Project - belongsTo - User
+  foreignKey: manager_id
+
+- Project - hasMany - Task
+  foreignKey: project_id
+
+- Task - belongsTo - Project
+  foreignKey: project_id
+
+- Project - hasMany - Comment
+  foreignKey: project_id
+
+- Comment - belongsTo - Project
+  foreignKey: project_id
+
+- User - hasMany - Comment
+  foreignKey: user_id
+
+- Comment - belongsTo - User
+  foreignKey: user_id
+
+- User - belongsToMany - Project
+  through: UserProject
+
+- Project - belongsToMany - User
+  through: UserProject
 
 ### Task Board
 
@@ -90,19 +203,22 @@ make a function, slap it in the docs
 
 # PAGES
 
-- LOGIN
-- SIGNUP
-- DASHBOARD
+- Login
+- Signup
+- Home
 
-  - PARTIALS
-    - TASKBOARD
-    - CHANNELS/MESSAGE THREADS
+## NPM Packages
 
-## FEATURES
+- Express
+- bcrypt
+- express-session
+- handlebars
+- mysql2
+- sequelize
+- uuid-int
 
-- MESSAGING - Socket.io Library? for syncronus messaging, possible sencond server for messaging?
-- CHANNELS
-- DIRECT MESSAGES
-- TASK BOARD
+## New Technology
 
-## NOTES
+- Faker - Generate Seed Data (Python)
+- Sweet Alerts 2 - Popups
+- BlazeUI - UI FrameWork
